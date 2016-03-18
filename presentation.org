@@ -1,0 +1,64 @@
+#+TITLE: Reducing Minesweeper Completely \newline Or, From Game to Lame in Polynomial Time!
+#+AUTHOR: Sam Graham
+#+EMAIL: samgraham@outlook.com
+#+startup: beamer
+#+LATEX_CLASS: beamer
+#+LATEX_CLASS_OPTIONS: [presentation]
+#+BEAMER_THEME: default
+#+BEAMER_FRAME_LEVEL: 2
+#+OPTIONS: toc:nil
+
+* What is Minesweeper? (In this case?)
+Minesweeper in this case is to take a minesweeper game and represent it as a graph G and then decide if a placement of nodes on that graph is possible, so that any node \textit{v} that is labeled \textit{m} has \textit{m} neighboring nodes containing mines. Surprisingly, this is an NP-complete problem.
+
+* Minesweeper as a Language
+Let MINESWEEPER = \{ \langle G, \textit{x} \rangle, G\\ is a graph and \textit{x} is a labeling of the nodes in G, and G can be filled with mines so that any node \textit{v} labeled \textit{m} has \textit{m} neighboring nodes containing mines.\right\}
+
+* Minesweeper is in NP
+MINESWEEPER \in NP\\
+Given a graph it can be verified in polynomial time. Just go through the graph nodes and check neighbors to see if the number of neighbors with mines matches \textit{m}.
+
+* 3SAT to Minesweeper
+Make a gadget for each variable:
+#+CAPTION: From: http://web.mit.edu/sp.268/www/2010/slides_MS.ppt
+[[./firstGadget.png]]
+
+* 3SAT to Minesweeper
+For each clause:
+#+CAPTION: From: http://web.mit.edu/sp.268/www/2010/slides_MS.ppt
+[[./secondGadget.png]]
+
+* 3SAT to Minesweeper
+Conversion is in polynomial time:
+- Gadget for each individual var is O(N)
+- Gadget for each \textit{m} is 0(MN)
+
+* Transforming Minesweeper
+#+CAPTION: From: http://simon.bailey.at/random/kaye.minesweeper.pdf
+[[./bentAndTerminatedWire.png]]
+
+* Transforming Minesweeper
+#+CAPTION: From: http://simon.bailey.at/random/kaye.minesweeper.pdf
+[[./threeWaySplitter.png]]
+
+* Transforming Minesweeper
+#+CAPTION: From: http://simon.bailey.at/random/kaye.minesweeper.pdf
+[[./wire.png]]
+
+* Transforming Minesweeper
+#+CAPTION: From: http://simon.bailey.at/random/kaye.minesweeper.pdf
+[[./NOT.png]]
+
+* Transforming Minesweeper
+#+CAPTION: From: http://simon.bailey.at/random/kaye.minesweeper.pdf
+[[./AND.png]]
+
+* Transforms in Polynomial Time
+#+ATTR_BEAMER: :overlay +-
+- We can assume we have these examples as a graph already. We then apply the same type of gadgets in reverse in around O(NM) time.
+- QED
+
+* Sources:
+Martin Heinrich, Accessed March 14, 2016, http://www.minesweeper.info/articles/MorePropertiesForNPCompleteMinesweeperGraphs.pdf
+Melissa Gymrek, Accessed March 14, 2016, http://web.mit.edu/sp.268/www/2010/slides_MS.ppt
+Richard Kaye, Accessed Marcg 14, 2016, http://simon.bailey.at/random/kaye.minesweeper.pdf
